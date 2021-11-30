@@ -259,7 +259,7 @@ mod tests {
         assert!(read_header([]).is_err());
         assert!(read_header(b"qoiF").is_err());
 
-        // both width and header must be positive.
+        // both width and height must be positive.
         assert!(read_header([b'q', b'o', b'i', b'f', 0, 0, 0, 1, 0, 0, 0, 1, 3, 1]).is_ok());
         assert!(read_header([b'q', b'o', b'i', b'f', 0, 0, 0, 0, 0, 0, 0, 1, 3, 1]).is_err());
         assert!(read_header([b'q', b'o', b'i', b'f', 0, 0, 0, 1, 0, 0, 0, 0, 3, 1]).is_err());
