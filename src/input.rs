@@ -64,11 +64,15 @@ where
 /// `channels` specifies the format of returned pixel buffer. RGBA8 and RGB8 are supported.
 /// Note that the channels value in the header is always ignored.
 ///
+/// This function reads a pixel count from the header, and decodes that number of pixels
+/// unconditionally. If you treat QOI inputs from untrusted sources, it might be a problem. In such
+/// cases, consider to use [`qoi_read`] or [`qoi_read_header`].
+///
 /// # Errors
 ///
 /// * For reading QOI header, the same as [`qoi_read_header`].
 /// * For decoding QOI body, the same as [`qoi_decode_to_vec`].
-/// * Returns error if filesystem/read operation fails.
+/// * Returns error if read operation fails.
 pub fn qoi_read_to_vec<R>(rdr: &mut R, channels: QoiChannels) -> QoiResult<(QoiDesc, Vec<u8>)>
 where
     R: Read,
