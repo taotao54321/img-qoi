@@ -2,6 +2,14 @@
 name = "img-qoi"
 version = "0.1.0"
 edition = "2021"
+description = "QOI (Quite OK Image) manipulation library"
+readme = "README.md"
+documentation = "https://docs.rs/img-qoi"
+homepage = "https://github.com/taotao54321/img-qoi"
+repository = "https://github.com/taotao54321/img-qoi"
+license = "MIT"
+keywords = ["image", "qoi"]
+categories = ["multimedia::images"]
 
 [dependencies]
 arrayvec = "0.7.2"
