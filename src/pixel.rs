@@ -136,9 +136,9 @@ impl From<[u8; 4]> for QoiPixel {
     }
 }
 
-pub(crate) const DIFF_RANGE_2: RangeInclusive<i8> = -2..=1;
-pub(crate) const DIFF_RANGE_4: RangeInclusive<i8> = -8..=7;
-pub(crate) const DIFF_RANGE_5: RangeInclusive<i8> = -16..=15;
+const DIFF_RANGE_2: RangeInclusive<i8> = -2..=1;
+const DIFF_RANGE_4: RangeInclusive<i8> = -8..=7;
+const DIFF_RANGE_5: RangeInclusive<i8> = -16..=15;
 
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 pub(crate) enum DiffOrColor {
@@ -158,11 +158,11 @@ pub(crate) enum PixelDiff {
 }
 
 impl PixelDiff {
-    pub(crate) const fn diff8_from_biased(r: u8, g: u8, b: u8) -> Self {
+    const fn diff8_from_biased(r: u8, g: u8, b: u8) -> Self {
         Self::Diff8((r << 4) | (g << 2) | b)
     }
 
-    pub(crate) const fn diff8_from_unbiased(r: i8, g: i8, b: i8) -> Self {
+    const fn diff8_from_unbiased(r: i8, g: i8, b: i8) -> Self {
         let r = (r as u8).wrapping_sub(*DIFF_RANGE_2.start() as u8);
         let g = (g as u8).wrapping_sub(*DIFF_RANGE_2.start() as u8);
         let b = (b as u8).wrapping_sub(*DIFF_RANGE_2.start() as u8);
@@ -170,7 +170,7 @@ impl PixelDiff {
         Self::diff8_from_biased(r, g, b)
     }
 
-    pub(crate) const fn diff16_from_biased(r: u8, g: u8, b: u8) -> Self {
+    const fn diff16_from_biased(r: u8, g: u8, b: u8) -> Self {
         let r = r as u16;
         let g = g as u16;
         let b = b as u16;
@@ -178,7 +178,7 @@ impl PixelDiff {
         Self::Diff16((r << 8) | (g << 4) | b)
     }
 
-    pub(crate) const fn diff16_from_unbiased(r: i8, g: i8, b: i8) -> Self {
+    const fn diff16_from_unbiased(r: i8, g: i8, b: i8) -> Self {
         let r = (r as u8).wrapping_sub(*DIFF_RANGE_5.start() as u8);
         let g = (g as u8).wrapping_sub(*DIFF_RANGE_4.start() as u8);
         let b = (b as u8).wrapping_sub(*DIFF_RANGE_4.start() as u8);
@@ -186,7 +186,7 @@ impl PixelDiff {
         Self::diff16_from_biased(r, g, b)
     }
 
-    pub(crate) const fn diff24_from_biased(r: u8, g: u8, b: u8, a: u8) -> Self {
+    const fn diff24_from_biased(r: u8, g: u8, b: u8, a: u8) -> Self {
         let g = g as u16;
         let b = b as u16;
         let a = a as u16;
@@ -199,7 +199,7 @@ impl PixelDiff {
         }
     }
 
-    pub(crate) const fn diff24_from_unbiased(r: i8, g: i8, b: i8, a: i8) -> Self {
+    const fn diff24_from_unbiased(r: i8, g: i8, b: i8, a: i8) -> Self {
         let r = (r as u8).wrapping_sub(*DIFF_RANGE_5.start() as u8);
         let g = (g as u8).wrapping_sub(*DIFF_RANGE_5.start() as u8);
         let b = (b as u8).wrapping_sub(*DIFF_RANGE_5.start() as u8);
