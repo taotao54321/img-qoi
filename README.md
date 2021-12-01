@@ -1,6 +1,6 @@
 # [QOI](https://github.com/phoboslab/qoi) (Quite OK Image) manipulation library
 
-[Documentaion](https://docs.rs/img-qoi)
+[Documentation](https://docs.rs/img-qoi)
 
 ## Examples
 
